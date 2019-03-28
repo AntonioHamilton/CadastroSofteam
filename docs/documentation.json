@@ -1,0 +1,232 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "cadastro softeam",
+      "description": "projeto de cadastro de funcionarios",
+      "termsOfService": "nullable",
+      "contact": {
+        "name": "Antonio Hamilton Santos Freitas",
+        "email": "antoniohamiltonfreitas@outloook.com",
+        "url": "https://github.com/AntonioHamilton/CadastroSofteam"
+      },
+      "license": {
+        "name": "2018 © SOFTEAM",
+        "url": "http://softeam.com.br"
+      }
+    },
+    "schemes": [
+      "https"
+    ],
+    "basePath": "/localhost:8000",
+    "paths": {
+      "/user": {
+        "get": {
+          "description": "Retorna todos os usuários",
+          "tags": [
+            "user"
+          ],
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "Funcionários encontrados!"
+            },
+            "500": {
+              "description": "Deu erro!"
+            }
+          }
+        },
+        "post": {
+          "summary": "cria um novo funcionário",
+          "description": "criar um novo funcionário",
+          "tags": [
+            "user"
+          ],
+          "responses": {
+            "201": {
+              "description": "Funcionário criado!",
+              "schema": {
+                "properties": {
+                  "cpf": {
+                    "type": "Number",
+                    "example": 12345678
+                  },
+                  "nome": {
+                    "type": "string",
+                    "example": "antonio"
+                  },
+                  "telefone": {
+                    "type": "Number",
+                    "example": 79981357237
+                  },
+                  "cep": {
+                    "type": "String",
+                    "example": "49095650"
+                  },
+                  "numero": {
+                      "type": "Number",
+                      "example": 22
+                  },
+                  "complemento": {
+                      "type": "String",
+                      "example": "perto da igreja"
+                  }
+                },
+                "required": [
+                  "cpf",
+                  "nome"  
+                ]
+              }
+            },
+            "500": {
+              "description": "Deu erro!"
+            }
+          }
+        }
+      },
+      "/user/{cpf}": {
+        "get": {
+          "summary": "Retorna um funcionário a partir do cpf",
+          "tags": [
+            "user"
+          ],
+          "parameters": [
+            {
+              "name": "cpf",
+              "in": "path",
+              "description": "cpf do funcionário que se quer procurar",
+              "required": true,
+              "type": "Number"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Funcionário encontrado!"
+            },
+            "404": {
+              "description": "Funcionário não encontrado!"
+            },
+            "500": {
+              "description": "Deu erro!"
+            }
+          }
+        },
+        "put": {
+          "summary": "Atualiza um funcionário",
+          "tags": [
+            "user"
+          ],
+          "parameters": [
+            {
+              "name": "cpf",
+              "in": "path",
+              "required": true,
+              "type": "Number",
+              "format": "cpf",
+              "description": "cpf do funcionário a ser atualizado"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Funcionário atualizado!",
+              "schema": {
+                "properties": {
+                  "cpf": {
+                    "type": "Number",
+                    "example": 123321
+                  },
+                  "nome": {
+                    "type": "string",
+                    "example": "antonio"
+                  },
+                  "telefone": {
+                    "type": "Number",
+                    "example": 32471239
+                  },
+                  "cep": {
+                      "type": "String",
+                      "example": "00000-000"
+                  },
+                  "numero":{
+                      "type": "Number",
+                      "example": 30 
+                  },
+                  "complemento" : {
+                      "type": "String",
+                      "example": "perto da borracharia do seu joão"
+                  }
+                },
+                "required": [
+                  "cpf"
+                ]
+              }
+            },
+            "500": {
+              "description": "Deu erro!"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Deleta um funcionário",
+          "tags": [
+            "user"
+          ],
+          "parameters": [
+            {
+              "name": "cpf",
+              "in": "path",
+              "required": true,
+              "type": "Number",
+              "format": "memberID",
+              "description": "cpf do usuário a ser deletado"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Funcionário removido!"
+            },
+            "404": {
+              "description": "Funcionário não encontrado!"
+            },
+            "500": {
+              "description": "Deu erro!"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "User": {
+        "type": "object",
+        "required": [
+          "cpf"
+        ],
+        "properties": {
+          "cpf": {
+            "type": "Number",
+            "example": 14459859570
+          },
+          "nome": {
+            "type": "String",
+            "example": "hamilton"
+          },
+          "telefone": {
+            "type": "Number",
+            "example": 30421229
+          },
+          "cep": {
+              "type": "String",
+              "example": "11111-111"
+          },
+          "numero": {
+              "type": "Number",
+              "example": 12
+          },
+          "complemento": {
+              "type": "String",
+              "example": "near something"
+          }
+        }
+      }
+    }
+  }

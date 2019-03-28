@@ -4,11 +4,11 @@ const User = require('../../models/userModel');
 
 beforeAll(() => User.remove({}));
 
-describe('Users', () => {
+describe('funcs', () => {
 
     describe('Create', () => {
         test('Should create a user', async () => {
-            const response = await request(app).post('/user').send(
+            const response = await request(app).post('/func').send(
                 {
                     cpf: 8039839564,
                     nome:'antonio hamilton',
@@ -21,7 +21,7 @@ describe('Users', () => {
             expect(response.status).toBe(201);
         });
         test('Should not create a user with the same cpf', async () => {
-            const response = await request(app).post('/user').send (
+            const response = await request(app).post('/func').send (
                 {
                     cpf: 8039839564,
                     nome:'antonio hamilton'
@@ -30,7 +30,7 @@ describe('Users', () => {
             expect(response.status).toBe(500);
         });
         test('should not create a user without cpf', async () => {
-            const response = await request(app).post('/user').send(
+            const response = await request(app).post('/func').send(
                 {
                     nome:'antonio hamilton',
                     telefone:79998352069,
@@ -50,7 +50,7 @@ describe('Users', () => {
                         nome: 'Qualquer coisa'
                     }
                 );
-                const response = await request(app).get('/user/123');
+                const response = await request(app).get('/func/123');
                 expect(response.status).toBe(200);
             });
         });

@@ -13,6 +13,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/hello', (req, res) => res.json('funcionou!'));
 
-app.use('/user', userRouter());
+app.use('/func', userRouter());
 
 module.exports = app.listen(8000, () => console.log('tá rodando'));

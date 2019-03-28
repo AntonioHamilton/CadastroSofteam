@@ -2,8 +2,8 @@ const User = require ('../models/userModel');
 
 const create = async (req, res) => {
     try {
-        const { cpf, nome, email, telefone, cep, numero, complemento } = req.body;
-        const user = new User ({
+        const { cpf, nome, telefone, cep, numero, complemento } = req.body;
+        const func = new User ({
             cpf,
             nome,
             telefone,
@@ -11,31 +11,31 @@ const create = async (req, res) => {
             numero,
             complemento
         })
-        await user.save();
-        return res.status(201).json({ message: 'Usuário criado!', user });
+        await func.save();
+        return res.status(201).json({ message: 'Funcionário criado!', func });
        
     } catch(error) {
-        return res.status(500).json({ message: 'Erro', error });
+        return res.status(500).json({ message: 'Deu erro!', error });
     }
 }; 
 
 const findAll = async (req, res) => {
     try {
-        const users = await User.find({});
-        return res.status(200).json({ message: 'Usuários encontrados!', users })
+        const funcs = await User.find({});
+        return res.status(200).json({ message: 'funcionários encontrados!', funcs })
     } catch (error) {
-        return res.status(500).json({ message: 'Erro', error });
+        return res.status(500).json({ message: 'Deu erro!', error });
     }
 };
 
 const findOne = async (req, res) => {
     try {
         const { cpf } = req.params;
-        const user = await User.findOne ({ cpf: cpf })
-        if (!user) {
-            return res.status(404).json({ message: 'Usuário não encontrado' });
+        const func = await User.findOne ({ cpf: cpf })
+        if (!func) {
+            return res.status(404).json({ message: 'Funcionário não encontrado!' });
         }
-        return res.status(200).json({ message: 'Usuário encontrado', user });
+        return res.status(200).json({ message: 'Funcionário encontrado!', func });
     } catch (error) {
         return res.status(500).json({ message: 'Deu erro!', error })
     }
@@ -45,7 +45,7 @@ const update = async (req, res) => {
     try{
         const {cpf: newcpf, nome, telefone, cep, numero, complemento} = req.body;
         const { cpf } = req.params;
-        const updateUser = await User.findOneAndUpdate(
+        const updateFunc = await User.findOneAndUpdate(
             {
                 cpf: cpf
             },
@@ -58,10 +58,10 @@ const update = async (req, res) => {
                 complemento
             }
         )
-        if(!updateUser) {
-            return res.status(404).json({ message: 'Usuário não encontrado' });
+        if(!updateFunc) {
+            return res.status(404).json({ message: 'Funcionário não encontrado!' });
         }
-        return res.status(200).json({ message: 'Usuario atualizado', updateUser });
+        return res.status(200).json({ message: 'Funcionário atualizado!', updateFunc });
     } catch (error) {
         return res.status(500).json({ message: 'Deu erro!', error })
     }
@@ -70,11 +70,11 @@ const update = async (req, res) => {
 const remove = async (req, res) => {
     try{
         const { cpf } = req.params;
-        const user = await User.findOneAndRemove({ cpf:cpf });
-        if (!user){
-            return res.status(404).json({ message: 'Usuário não encontrado' });
+        const func = await User.findOneAndRemove({ cpf:cpf });
+        if (!func){
+            return res.status(404).json({ message: 'Funcionário não encontrado!' });
         }
-        return res.status(200).json({ message: 'Usuário removido', user });
+        return res.status(200).json({ message: 'Funcionário removido!', func });
     }catch (error) {
         return res.status(500).json({ message: 'Deu erro!', error });
     }
