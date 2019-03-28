@@ -31,7 +31,7 @@ const findAll = async (req, res) => {
 const findOne = async (req, res) => {
     try {
         const { cpf } = req.params;
-        const func = await User.findOne ({ cpf: cpf })
+        const func = await User.findOne ({ cpf }); //quando vc tem um obj, que o nome da variável que tem o valor, é o mesmo nome da propriedade só precisa utilizar 1
         if (!func) {
             return res.status(404).json({ message: 'Funcionário não encontrado!' });
         }
@@ -70,7 +70,7 @@ const update = async (req, res) => {
 const remove = async (req, res) => {
     try{
         const { cpf } = req.params;
-        const func = await User.findOneAndRemove({ cpf:cpf });
+        const func = await User.findOneAndRemove({ cpf });//quando vc tem um obj, que o nome da variável que tem o valor, é o mesmo nome da propriedade só precisa utilizar 1
         if (!func){
             return res.status(404).json({ message: 'Funcionário não encontrado!' });
         }
