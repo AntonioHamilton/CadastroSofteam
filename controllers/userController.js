@@ -80,10 +80,25 @@ const remove = async (req, res) => {
     }
 };
 
+const removeByCep = async (req, res) => {
+    try{
+        const { cep } = req.params;
+        const func = await User.findOneAndRemove({ cep });//quando vc tem um obj, que o nome da variável que tem o valor, é o mesmo nome da propriedade só precisa utilizar 1
+        if (!func){
+            return res.status(404).json({ message: 'Funcionário não encontrado!' });
+        }
+        return res.status(200).json({ message: 'Funcionário removido!', func });
+    }catch (error) {
+        return res.status(500).json({ message: 'Deu erro!', error });
+    }
+};
+
+
 module.exports = {
     create,
     findAll,
     findOne,
     update,
-    remove
+    remove,
+    removeByCep
 }

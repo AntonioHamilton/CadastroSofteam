@@ -10,6 +10,9 @@ const userRouter = () => {
     .get(userController.findOne)
     .put(userController.update)
     .delete(userController.remove)
+    
+    router.route('/remove/:cep')
+    .delete(userController.removeByCep);
 
     return router
 };

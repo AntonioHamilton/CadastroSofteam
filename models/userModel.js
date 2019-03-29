@@ -14,7 +14,8 @@ const userSchema = new mongoose.Schema({
         type: Number
     },
     cep: {
-        type: String
+        type: String,
+        unique: true
     },
     numero: {
         type: Number
