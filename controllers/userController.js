@@ -99,6 +99,5 @@ module.exports = {
     findAll,
     findOne,
     update,
-    remove,
-    removeByCep
+    remove
 }
